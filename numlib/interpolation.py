@@ -1,4 +1,4 @@
-def Lagrange(x,y,z):
+def Lagrange(x,y,z): #x-węzły interpolacyjne, y-f(x)
     n=len(x)
     if n!= len(y):
         raise ValueError("Lista x i y muszą mieć taką samą długość")
