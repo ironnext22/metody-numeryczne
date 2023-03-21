@@ -4,7 +4,7 @@ import numpy as np
 from numlib import horner as horner
 import pandas as pd
 from numlib import kwadrat as kwad
-
+import math
 # var=np.array([1/2,4/3,-13/6,-2])
 # x=-4
 # wynik = horner.horner_natural(var,3,x)
@@ -46,7 +46,32 @@ n = 6
 x = [a + i * (b-a)/n for i in range(n+1)]
 def f(x):
     return (x**2)-5
-print("zadanie 1")
-print(kwad.trap(f,x,n))
-print(kwad.met_trapv2(f,a,b,n))
-
+print(f"zadanie 1: {kwad.trap(f,x,n)}")
+print(f"zadanie 2a: {kwad.NCtrap(f,a,b,n)}")
+print(f"Zadanie 2b: {kwad.NCSim(f,a,b,n)}")
+var = [0.4,5,-6,-2,55]
+print(f"Zadanie 3: {kwad.NCtrap_wiel(var,-2,2,80,4)}")
+def f2(x):
+    return (x**2)*(np.sin(x)**3)
+a=0
+b=4.5
+n=100
+print(f"Zadanie 4: {kwad.NCtrap(f2,a,b,n)}")
+def f3(x):
+    return np.exp(x**2)*(x-1)
+a=-2
+b=2
+n=100
+print(f"Zadanie 5: {kwad.NCSim(f3,a,b,n)}")
+def f4(x):
+    return (3*x**3)+(2*x**2)+(8*x)-4
+print(f"Test 1: {kwad.NCtrap(f4,-2,2,100)}")
+def f5(x):
+    return x**x
+print(f"Test 2: {kwad.NCtrap(f5,0,1,10)}")
+def f6(x):
+    return np.sin(1/(1-x))
+print(f"Test 3: {kwad.NCtrap(f6,0,1-np.e-4,1000)}")
+def f7(x):
+    return np.sin(x)/x
+print(f"Test 4: {kwad.NCtrap(f7,0.0001,1,10)}")

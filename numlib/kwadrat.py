@@ -26,7 +26,6 @@ def met_trapv2(f,a,b,n):
 
 def NCtrap(f,a,b,n):
     h=(b-a)/n
-    wynik = 0
     x=[a+i*h for i in range(n+1)]
     y=[f(i) for i in x]
     return (h/2)*(y[0]+2*sum(y[1:-1])+y[-1])
@@ -66,17 +65,16 @@ def NCSimv2(f,a,b,h):
 #zadanie 3
 def NCtrap_wiel(f,a,b,n,stop):
     h=(b-a)/n
-    wynik = 0
     x=[a+i*h for i in range(n+1)]
     y=[kwad.horner_natural(f,stop,i) for i in x]
     return (h/2)*(y[0]+2*sum(y[1:-1])+y[-1])
 
-def NCSim_wiel(f,a,b,n,stop):
-    if n%2 == 1:
-        raise ValueError("Error")
-    h=(b-a)/n
-    x=[a+i*h for i in range(n+1)]
-    y=[kwad.horner_natural(f,stop,i) for i in x]
-    wynik = (h/3)*(y[0]+4*sum(y[1:-1:2])+2*sum(y[2:-1:2])+y[-1])
-
-    return wynik
+# def NCSim_wiel(f,a,b,n,stop):
+#     if n%2 == 1:
+#         raise ValueError("Error")
+#     h=(b-a)/n
+#     x=[a+i*h for i in range(n+1)]
+#     y=[kwad.horner_natural(f,stop,i) for i in x]
+#     wynik = (h/3)*(y[0]+4*sum(y[1:-1:2])+2*sum(y[2:-1:2])+y[-1])
+#
+#     return wynik
