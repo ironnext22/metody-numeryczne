@@ -1,10 +1,14 @@
+from __future__ import with_statement
 from numlib import interpolation as inter
 from matplotlib import pyplot as plt
 import numpy as np
 from numlib import horner as horner
 import pandas as pd
 from numlib import kwadrat as kwad
-import math
+
+
+import decimal
+
 # var=np.array([1/2,4/3,-13/6,-2])
 # x=-4
 # wynik = horner.horner_natural(var,3,x)
@@ -63,6 +67,7 @@ a=-2
 b=2
 n=100
 print(f"Zadanie 5: {kwad.NCSim(f3,a,b,n)}")
+print(f"gaus test: {kwad.gaus_v1(f3,a,b,n)}")
 def f4(x):
     return (3*x**3)+(2*x**2)+(8*x)-4
 print(f"Test 1: {kwad.NCtrap(f4,-2,2,100)}")
@@ -75,3 +80,10 @@ print(f"Test 3: {kwad.NCtrap(f6,0,1-np.e-4,1000)}")
 def f7(x):
     return np.sin(x)/x
 print(f"Test 4: {kwad.NCtrap(f7,0.0001,1,10)}")
+
+# decimal.getcontext().prec = 100
+# print (kwad.pi_gauss_legendre())
+def f10(x):
+    return np.sin(x)/x
+print(kwad.gaus_v1(f10,0.0001,1,50))
+print(kwad.gauss_v2(f10,0.0001,1,50))
