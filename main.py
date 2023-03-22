@@ -43,47 +43,55 @@ import decimal
 # plt.title(" Postać Newtona wielomianu Lagrange’a")
 # ax.legend()
 # plt.show()
+# a = 2
+# b = 4
+# n = 6
+#
+# x = [a + i * (b-a)/n for i in range(n+1)]
+# def f(x):
+#     return (x**2)-5
+# print(f"zadanie 1: {kwad.trap(f,x,n)}")
+# print(f"zadanie 2a: {kwad.NCtrap(f,a,b,n)}")
+# print(f"Zadanie 2b: {kwad.NCSim(f,a,b,n)}")
+# var = [0.4,5,-6,-2,55]
+# print(f"Zadanie 3: {kwad.NCtrap_wiel(var,-2,2,80,4)}")
+# def f2(x):
+#     return (x**2)*(np.sin(x)**3)
+# a=0
+# b=4.5
+# n=100
+# print(f"Zadanie 4: {kwad.NCtrap(f2,a,b,n)}")
+# def f3(x):
+#     return np.exp(x**2)*(x-1)
+# a=-2
+# b=2
+# n=100
+# print(f"Zadanie 5: {kwad.NCSim(f3,a,b,n)}")
+# print(f"gaus test: {kwad.gaus_v1(f3,a,b,n)}")
+# def f4(x):
+#     return (3*x**3)+(2*x**2)+(8*x)-4
+# print(f"Test 1: {kwad.NCtrap(f4,-2,2,100)}")
+# def f5(x):
+#     return x**x
+# print(f"Test 2: {kwad.NCtrap(f5,0,1,10)}")
+# def f6(x):
+#     return np.sin(1/(1-x))
+# print(f"Test 3: {kwad.NCtrap(f6,0,1-np.e-4,1000)}")
+# def f7(x):
+#     return np.sin(x)/x
+# print(f"Test 4: {kwad.NCtrap(f7,0.0001,1,10)}")
+
+def f10(x):
+    return (x**2)-5
 a = 2
 b = 4
-n = 6
-
-x = [a + i * (b-a)/n for i in range(n+1)]
-def f(x):
-    return (x**2)-5
-print(f"zadanie 1: {kwad.trap(f,x,n)}")
-print(f"zadanie 2a: {kwad.NCtrap(f,a,b,n)}")
-print(f"Zadanie 2b: {kwad.NCSim(f,a,b,n)}")
-var = [0.4,5,-6,-2,55]
-print(f"Zadanie 3: {kwad.NCtrap_wiel(var,-2,2,80,4)}")
-def f2(x):
+print(f"zadanie 1a: {kwad.gauss_v2(f10,a,b,2)}")
+print(f"zadanie 1b: {kwad.gauss_v2(f10,a,b,3)}")
+print(f"zadanie 1c: {kwad.gauss_v2(f10,a,b,4)}")
+print(f"zadanie 1d: {kwad.gauss_v2(f10,a,b,5)}")
+def f11(x):
     return (x**2)*(np.sin(x)**3)
-a=0
-b=4.5
-n=100
-print(f"Zadanie 4: {kwad.NCtrap(f2,a,b,n)}")
-def f3(x):
+print(f"zadanie 2a: {kwad.gauss_v2(f11,0,4.5,100)}")
+def f12(x):
     return np.exp(x**2)*(x-1)
-a=-2
-b=2
-n=100
-print(f"Zadanie 5: {kwad.NCSim(f3,a,b,n)}")
-print(f"gaus test: {kwad.gaus_v1(f3,a,b,n)}")
-def f4(x):
-    return (3*x**3)+(2*x**2)+(8*x)-4
-print(f"Test 1: {kwad.NCtrap(f4,-2,2,100)}")
-def f5(x):
-    return x**x
-print(f"Test 2: {kwad.NCtrap(f5,0,1,10)}")
-def f6(x):
-    return np.sin(1/(1-x))
-print(f"Test 3: {kwad.NCtrap(f6,0,1-np.e-4,1000)}")
-def f7(x):
-    return np.sin(x)/x
-print(f"Test 4: {kwad.NCtrap(f7,0.0001,1,10)}")
-
-# decimal.getcontext().prec = 100
-# print (kwad.pi_gauss_legendre())
-def f10(x):
-    return np.sin(x)/x
-print(kwad.gaus_v1(f10,0.0001,1,50))
-print(kwad.gauss_v2(f10,0.0001,1,50))
+print(f"zadanie 2b: {kwad.gauss_v2(f12,-2,2,100)}")

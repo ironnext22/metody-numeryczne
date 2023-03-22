@@ -129,5 +129,4 @@ def gauss_v2(f, a, b, n):
     integral = 0.0
     for i in range(n):
         integral += w[i] * f(t[i])
-    integral = integral * (b - a) / 2.0
-    return integral
+    return integral * (b - a) / 2.0
