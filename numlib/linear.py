@@ -9,7 +9,7 @@ def gauss_elimination(A, b,z=2):
             factor = A[j,i] / A[i,i]
             A[j,i+1:n] -= factor * A[i,i+1:n]
             b[j] -= factor * b[i]
-    # Back substitution phase
+    # algorytm podstawiania wstecz
     x = np.zeros(n)
     x[n-1] = round(b[n-1] / A[n-1,n-1],z)
     for i in range(n-2, -1, -1):
@@ -51,3 +51,46 @@ def gauss_crout_elimination(A, b,z=2):
         x[i] = round((y[i] - sum) / U[i, i],z)
 
     return x
+
+#lab2
+def lu_doolittle(A):
+    n = len(A)
+    L = np.zeros((n, n))
+    U = np.zeros((n, n))
+
+    for i in range(n):
+        L[i][i] = 1
+
+        # for i in range(n - 1):
+        #     for j in range(i + 1, n):
+        #         factor = A[j, i] / A[i, i]
+        #         A[j, i + 1:n] -= factor * A[i, i + 1:n]
+        #         b[j] -= factor * b[i]
+        for j in range(i, n):
+            U[i][j] = A[i][j] - sum(L[i][k] * U[k][j] for k in range(i))
+
+        for j in range(i + 1, n):
+            L[j][i] = (A[j][i] - sum(L[j][k] * U[k][i] for k in range(i))) / U[i][i]
+
+    return L, U
+
+def forward_substitution(L, b):
+    n = L.shape[0]
+    y = np.zeros(n)
+    y[0] = b[0] / L[0, 0]
+    for i in range(1, n):
+        y[i] = (b[i] - np.dot(L[i, :i], y[:i])) / L[i, i]
+    return y
+
+def backward_substitution(U, y):
+    n = U.shape[0]
+    x = np.zeros(n)
+    x[-1] = y[-1] / U[-1, -1]
+    for i in range(n-2, -1, -1):
+        x[i] = (y[i] - np.dot(U[i, i:], x[i:])) / U[i, i]
+    return x
+def LU(A,b):
+    L,U = lu_doolittle(A)
+    y=forward_substitution(L,b)
+    w=backward_substitution(U,y)
+    return w
