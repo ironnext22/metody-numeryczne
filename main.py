@@ -6,9 +6,6 @@ from numlib import horner as horner
 import pandas as pd
 from numlib import kwadrat as kwad
 
-
-import decimal
-
 # var=np.array([1/2,4/3,-13/6,-2])
 # x=-4
 # wynik = horner.horner_natural(var,3,x)
