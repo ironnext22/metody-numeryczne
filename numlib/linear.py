@@ -3,7 +3,7 @@ import numpy as np
 #Ax=B
 def gauss_elimination(A, b,z=2):
     n = len(b)
-    # Elimination phase
+    # Faza eliminacji
     for i in range(n-1):
         for j in range(i+1, n):
             factor = A[j,i] / A[i,i]
@@ -54,18 +54,13 @@ def gauss_crout_elimination(A, b,z=2):
 
 #lab2
 def lu_doolittle(A):
+    if np.linalg.det(A)==0: raise ValueError("Macierz o wyznaczniku zerowym")
     n = len(A)
     L = np.zeros((n, n))
     U = np.zeros((n, n))
 
     for i in range(n):
         L[i][i] = 1
-
-        # for i in range(n - 1):
-        #     for j in range(i + 1, n):
-        #         factor = A[j, i] / A[i, i]
-        #         A[j, i + 1:n] -= factor * A[i, i + 1:n]
-        #         b[j] -= factor * b[i]
         for j in range(i, n):
             U[i][j] = A[i][j] - sum(L[i][k] * U[k][j] for k in range(i))
 
