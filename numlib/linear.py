@@ -11,7 +11,7 @@ def gauss_elimination(A, b,z=2):
             b[j] -= factor * b[i]
     # algorytm podstawiania wstecz
     x = np.zeros(n)
-    x[n-1] = round(b[n-1] / A[n-1,n-1],z)
+
     for i in range(n-2, -1, -1):
         x[i] = round((b[i] - np.dot(A[i,i+1:n], x[i+1:n])) / A[i,i],z)
     return x
@@ -61,11 +61,6 @@ def lu_doolittle(A):
     for i in range(n):
         L[i][i] = 1
 
-        # for i in range(n - 1):
-        #     for j in range(i + 1, n):
-        #         factor = A[j, i] / A[i, i]
-        #         A[j, i + 1:n] -= factor * A[i, i + 1:n]
-        #         b[j] -= factor * b[i]
         for j in range(i, n):
             U[i][j] = A[i][j] - sum(L[i][k] * U[k][j] for k in range(i))
 
