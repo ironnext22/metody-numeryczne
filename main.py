@@ -3,8 +3,10 @@ from numlib import interpolation as inter
 from matplotlib import pyplot as plt
 import numpy as np
 from numlib import horner as horner
+import pandas as pd
 from numlib import kwadrat as kwad
 from numlib import linear as lin
+from numlib import ort as ort
 
 # var=np.array([1/2,4/3,-13/6,-2])
 # x=-4
@@ -116,20 +118,18 @@ from numlib import linear as lin
 # A = np.array([[2., 1., -1.], [4., 5., -3.], [2., 8., 7.]])
 # b = np.array([1., -3., 2.])
 # y = lin.gauss_crout_elimination(A,b)
-# print(x)
-# print(y)
+# # print(x)
+# # print(y)
 # A=np.array([[1.,-3.,4,6.8,9.],[-3.,2.,4.6,6.3,-10.],[2.,-1.,2.8,-8.4,-5.],[-6.,2.,7.,-0.5,-0.9],[5.,-2.,-0.5,12.,-4.]])
 # b=np.array([74.64,-40.26,-2.32,12.6,-8.9])
 # x1=lin.gauss_elimination(A,b)
 # A=np.array([[1.,-3.,4,6.8,9.],[-3.,2.,4.6,6.3,-10.],[2.,-1.,2.8,-8.4,-5.],[-6.,2.,7.,-0.5,-0.9],[5.,-2.,-0.5,12.,-4.]])
 # b=np.array([74.64,-40.26,-2.32,12.6,-8.9])
 # x2=lin.gauss_crout_elimination(A,b)
-# L,U=lin.lu_doolittle(A)
-# #print(U)
 # print(x1)
 # print(x2)
 #
-# # print("lab 2 zadanie 1a:")
+# print("lab 2 zadanie 1a:")
 # A = np.array([[60,30,20],[30,20,15],[20,15,12]])
 # L1, U1 = lin.lu_doolittle(A)
 # print(f"L1=\n{L1} , \nU1=\n{U1}")
@@ -137,10 +137,10 @@ from numlib import linear as lin
 # A = np.array([[3,0,1],[0,-1,3],[1,3,0]])
 # L2,U2 = lin.lu_doolittle(A)
 # print(f"L2=\n{L2} , \nU2=\n{U2}")
-# print("lab 2 zadanie 1c:")
-# A = np.array([[2,1,-2],[4,2,-1],[6,3,11]])
-# L3,U3 = lin.lu_doolittle(A)
-# print(f"L3=\n{L3} , \nU3=\n{U3}")
+# print("lab 2 zadanie 1c: macierz zerowa")
+# # A = np.array([[2,1,-2],[4,2,-1],[6,3,11]])
+# # L3,U3 = lin.lu_doolittle(A)
+# # print(f"L3=\n{L3} , \nU3=\n{U3}")
 # print("lab 2 zadanie 2")
 # A=np.array([[1.,-3.,4,6.8,9.],[-3.,2.,4.6,6.3,-10.],[2.,-1.,2.8,-8.4,-5.],[-6.,2.,7.,-0.5,-0.9],[5.,-2.,-0.5,12.,-4.]])
 # b=np.array([74.64,-40.26,-2.32,12.6,-8.9])
@@ -150,8 +150,12 @@ from numlib import linear as lin
 # y=lin.LU(A,b)
 # print(y)
 
-A = np.array([[1,1/2,1/3,1/4],[1/2,1/3,1/4,1/5],[1/3,1/4,1/5,1/6],[1/4,1/5,1/6,1/7]])
-B = np.array([1,1,1,1])
-y=lin.LU(A,B)
-print(y)
+p1 = np.array([1, 2, 1])  # p1(x) = x^2 + 2x + 1
+p2 = np.array([1, 1, 0])  # p2(x) = x^2 + x
+p3 = np.array([1, 0, 1])  # p3(x) = x^2 + 1
+
+polynomials = [p1, p2, p3]
+
+A = np.array([[1,2],[3,2]])
+print(ort.gram_schmidt(A),"\n")
 
