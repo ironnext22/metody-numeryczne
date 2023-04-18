@@ -150,12 +150,11 @@ from numlib import ort as ort
 # y=lin.LU(A,b)
 # print(y)
 
-p1 = np.array([1, 2, 1])  # p1(x) = x^2 + 2x + 1
-p2 = np.array([1, 1, 0])  # p2(x) = x^2 + x
-p3 = np.array([1, 0, 1])  # p3(x) = x^2 + 1
+# A = np.array([[1,0,0],[0,1,0],[0,0,1]])
+# B = ort.gram_schmidtv2(A,-1,1,100)
 
-polynomials = [p1, p2, p3]
-
-A = np.array([[1,2],[3,2]])
-print(ort.gram_schmidt(A),"\n")
+A = np.array([[0,0,1],[0,1,0],[1,0,0]])
+#A = ort.generate_basis_standard(3)
+B = ort.gram_schmidtv2(A,-1,1,100)
+print(B)
 

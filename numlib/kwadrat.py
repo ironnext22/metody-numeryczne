@@ -1,11 +1,8 @@
 from __future__ import with_statement
-
 from turtle import pu
 
 import numpy as np
-from numpy.polynomial.legendre import legder, legval, legcompanion
-from numpy.polynomial.polyutils import _deprecate_as_int
-
+import scipy
 from numlib import horner as horner
 import decimal
 #
@@ -130,3 +127,5 @@ def gauss_v2(f, a, b, n):
     for i in range(n):
         integral += w[i] * f(t[i])
     return integral * (b - a) / 2.0
+
+
