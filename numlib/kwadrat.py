@@ -81,6 +81,17 @@ def NCtrap_wiel(f,a,b,n,stop):
     y=[horner.horner_natural(f,stop,i) for i in x]
     return (h/2)*(y[0]+2*sum(y[1:-1])+y[-1])
 
+
+def NCSim_wiel(f,a,b,n):
+    stop = len(f)-1
+    if n%2 == 1:
+        raise ValueError("Error")
+    h=(b-a)/n
+    x=[a+i*h for i in range(n+1)]
+    y=[horner.horner_natural(f,stop,i) for i in x]
+    wynik = (h/3)*(y[0]+4*sum(y[1:-1:2])+2*sum(y[2:-1:2])+y[-1])
+
+    return wynik
 # def NCSim_wiel(f,a,b,n,stop):
 #     if n%2 == 1:
 #         raise ValueError("Error")
