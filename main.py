@@ -153,8 +153,36 @@ from numlib import ort as ort
 # A = np.array([[1,0,0],[0,1,0],[0,0,1]])
 # B = ort.gram_schmidtv2(A,-1,1,100)
 
-A = np.array([[0,0,1],[0,1,0],[1,0,0]])
-#A = ort.generate_basis_standard(3)
-B = ort.gram_schmidtv2(A,-1,1,100)
-print(B)
+# A = np.array([[0,0,1],[0,1,0],[1,0,0]])
+# B = np.array([[1,0,0],[0,1,0],[0,0,1]])
+# A = ort.generate_basis_standard(5)
+# C = ort.gram_schmidtv2(A,0,1,100)
+# print(C)
+# D = ort.gram_schmidtv2(B,-1,1,100)
+# #print(D)
+# E = ort.generate_basis_standard(5)
+# F = ort.gram_schmidtv2(E,-1,1,1000)
+#print(F)
+def f(x):
+    return np.sin(-x)+(np.e**(-x))-(x**3)
+n = 5
+a = 0
+b = 1.0
+k = 1000
 
+X = []
+Y = []
+P = [(a)+((b-a)/k)*x for x in range(k)]
+for i in P:
+     X.append(i)
+     Y.append(f(i))
+import numlib.Approximation as ax
+W = ax.ap(X,Y,n)
+print(W)
+def f(x):
+    return W[0]*x**5+W[1]*x**4+W[2]*x**3+W[3]*x**2+W[4]*x+W[5]
+X2 = np.linspace(-1,1,1000)
+Y2 = [f(x) for x in X2]
+
+plt.plot(P,Y2)
+plt.show()

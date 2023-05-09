@@ -35,12 +35,6 @@ def iloczyn(A,B,a,b,n):
 
     return kwd.NCSim_wiel(wynik,a,b,n)
 
-def generate_basis_standard(n):
-    basis = np.zeros((n, n))
-    for i in range(n):
-        basis[i][n-i-1] = 1
-    return basis
-
 def gram_schmidtv2(A, a, b, n):
     wynik = []
 
@@ -52,45 +46,17 @@ def gram_schmidtv2(A, a, b, n):
 
             for k in range(i):
                 s = round(iloczyn(A[i], wynik[k],a,b,n) / iloczyn(wynik[k], wynik[k],a,b,n),6)
-                pom -= s * wynik[k][j]
+                pom -= round(s * wynik[k][j],6)
 
             w.append(pom)
 
         wynik.append(w)
-        w2 = np.array(wynik)
+        w2 = np.transpose(wynik)
     return w2
 
 
-def generate_orthogonal_basis(n, a, b, weight_func = 1):
-    # Generate nodes and weights using quadrature
-    nodes, weights = np.polynomial.legendre.leggauss(n)
-
-    # Define basis functions
-    basis_functions = []
+def generate_basis_standard(n):
+    basis = np.zeros((n, n))
     for i in range(n):
-        def basis_function(x, i=i):
-            return np.sqrt(weights[i]) * weight_func(x) * np.polynomial.legendre.legval(x, [0] * i + [1] + [0] * (
-                        n - i - 1))
-
-        basis_functions.append(basis_function)
-
-    # Generate orthogonal matrix
-    orthogonal_matrix = np.zeros((n, n))
-    for i in range(n):
-        for j in range(n):
-            integral = scipy.integrate.quad(lambda x: basis_functions[i](x) * basis_functions[j](x), a, b)
-            orthogonal_matrix[i][j] = integral[0]
-
-    # Calculate Cholesky decomposition of orthogonal matrix
-    L = np.linalg.cholesky(orthogonal_matrix)
-
-    # Define orthonormal basis functions
-    orthonormal_basis_functions = []
-    for i in range(n):
-        def orthonormal_basis_function(x, i=i):
-            return (1 / np.sqrt(b - a)) * np.dot(L[i], [basis_function(x) for basis_function in basis_functions])
-
-        orthonormal_basis_functions.append(orthonormal_basis_function)
-
-    # Return orthonormal basis functions
-    return orthonormal_basis_functions
+        basis[i][n-i-1] = 1
+    return basis
