@@ -7,6 +7,8 @@ import pandas as pd
 from numlib import kwadrat as kwad
 from numlib import linear as lin
 from numlib import ort as ort
+from numlib import diff_equation as de
+import scipy as sp
 
 # var=np.array([1/2,4/3,-13/6,-2])
 # x=-4
@@ -163,26 +165,53 @@ from numlib import ort as ort
 # E = ort.generate_basis_standard(5)
 # F = ort.gram_schmidtv2(E,-1,1,1000)
 #print(F)
-def f(x):
-    return np.sin(-x)+(np.e**(-x))-(x**3)
-n = 5
-a = 0
-b = 1.0
-k = 1000
+# def f(x):
+#     return np.sin(-x)+(np.e**(-x))-(x**3)
+# n = 5
+# a = 0
+# b = 1.0
+# k = 1000
+#
+# X = []
+# Y = []
+# P = [(a)+((b-a)/k)*x for x in range(k)]
+# for i in P:
+#      X.append(i)
+#      Y.append(f(i))
+# import numlib.Approximation as ax
+# W = ax.ap(X,Y,n)
+# print(W)
+# def f(x):
+#     return W[0]*x**5+W[1]*x**4+W[2]*x**3+W[3]*x**2+W[4]*x+W[5]
+# X2 = np.linspace(-1,1,1000)
+# Y2 = [f(x) for x in X2]
+#
+# plt.plot(P,Y2)
+# plt.show()
 
-X = []
-Y = []
-P = [(a)+((b-a)/k)*x for x in range(k)]
-for i in P:
-     X.append(i)
-     Y.append(f(i))
-import numlib.Approximation as ax
-W = ax.ap(X,Y,n)
-print(W)
-def f(x):
-    return W[0]*x**5+W[1]*x**4+W[2]*x**3+W[3]*x**2+W[4]*x+W[5]
-X2 = np.linspace(-1,1,1000)
-Y2 = [f(x) for x in X2]
+a = -(10**-12)
+B = 0
+def f(t,x):
+    return a*(np.power(t,4))
 
-plt.plot(P,Y2)
+x0=1200
+t1=np.linspace(0,300,100)
+
+roz1 = de.Euler(f,[x0],t1)
+plt.plot(t1,roz1[:,0])
+
+roz2 = de.rungekutta4(f,[x0],t1)
+plt.plot(t1,roz2[:,0])
+
+roz3 = de.Heuna(f,[x0],t1)
+plt.plot(t1,roz3[:,0])
+
+roz4 = de.Euler2(f,[x0],t1)
+plt.plot(t1,roz4[:,0])
+
 plt.show()
+
+print(roz1[-1])
+print(roz2[-1])
+print(roz3[-1])
+print(roz4[-1])
