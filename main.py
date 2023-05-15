@@ -218,8 +218,8 @@ import math
 # print(roz3[-1])
 # print(roz4[-1])
 
-a = -2
-b = 2
+a = 1
+b = 3
 def f1(x):
     return x**3+x**2-3*x-3
 def p1(x):
@@ -233,11 +233,11 @@ def f3(x):
 def p3(x):
     return derivative(f3,x)
 def f4(x):
-    np.sin(x**2)-x**2+(1/2)
+    return np.sin(x**2)-x**2+0.5
 def p4(x):
     return derivative(f4,x)
 #zadanie 1
-res = nl.Newton(f4,p3,a)
+res = nl.Newton(f4,p4,a)
 print(res)
 #zadanie 2
 res = nl.sieczne(f4,a,b)
