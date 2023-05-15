@@ -9,7 +9,10 @@ from numlib import linear as lin
 from numlib import ort as ort
 from numlib import diff_equation as de
 import scipy as sp
+from numlib import nolinear as nl
+from scipy.misc import derivative
 
+import math
 # var=np.array([1/2,4/3,-13/6,-2])
 # x=-4
 # wynik = horner.horner_natural(var,3,x)
@@ -189,29 +192,59 @@ import scipy as sp
 # plt.plot(P,Y2)
 # plt.show()
 
-a = -(10**-12)
-B = 0
-def f(t,x):
-    return a*(np.power(t,4))
+# a = -(10**-12)
+# B = 0
+# def f(t,x):
+#     return a*(np.power(t,4))
+# x0=1200
+# t1=np.linspace(0,300,100)
+#
+# roz1 = de.Euler(f,[x0],t1)
+# plt.plot(t1,roz1[:,0])
+#
+# roz2 = de.rungekutta4(f,[x0],t1)
+# plt.plot(t1,roz2[:,0])
+#
+# roz3 = de.Heuna(f,[x0],t1)
+# plt.plot(t1,roz3[:,0])
+#
+# roz4 = de.Euler2(f,[x0],t1)
+# plt.plot(t1,roz4[:,0])
+#
+# plt.show()
+#
+# print(roz1[-1])
+# print(roz2[-1])
+# print(roz3[-1])
+# print(roz4[-1])
 
-x0=1200
-t1=np.linspace(0,300,100)
-
-roz1 = de.Euler(f,[x0],t1)
-plt.plot(t1,roz1[:,0])
-
-roz2 = de.rungekutta4(f,[x0],t1)
-plt.plot(t1,roz2[:,0])
-
-roz3 = de.Heuna(f,[x0],t1)
-plt.plot(t1,roz3[:,0])
-
-roz4 = de.Euler2(f,[x0],t1)
-plt.plot(t1,roz4[:,0])
-
-plt.show()
-
-print(roz1[-1])
-print(roz2[-1])
-print(roz3[-1])
-print(roz4[-1])
+a = -2
+b = 2
+def f1(x):
+    return x**3+x**2-3*x-3
+def p1(x):
+    return derivative(f1,x)
+def f2(x):
+    return x**2-2
+def p2(x):
+    return derivative(f2,x)
+def f3(x):
+    return np.sin(x**2)-x**2
+def p3(x):
+    return derivative(f3,x)
+def f4(x):
+    np.sin(x**2)-x**2+(1/2)
+def p4(x):
+    return derivative(f4,x)
+#zadanie 1
+res = nl.Newton(f4,p3,a)
+print(res)
+#zadanie 2
+res = nl.sieczne(f4,a,b)
+print(res)
+#zadanie 3
+res = nl.fl(f4,a,b)
+print(res)
+#zadanie 4
+res = nl.bs(f4,a,b)
+print(res)

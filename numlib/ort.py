@@ -1,7 +1,7 @@
 import numpy as np
 from numlib import kwadrat as kwd
 import math
-import scipy
+from scipy.integrate import quad
 def gram_schmidt(A):
     # Rozmiar macierzy A
     m, n = A.shape
